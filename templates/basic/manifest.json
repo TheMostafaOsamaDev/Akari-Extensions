@@ -1,0 +1,9 @@
+{
+  "id": "com.example.sample",
+  "name": "Sample Akari Extension",
+  "version": "0.1.0",
+  "hostApiVersion": "1.0.0",
+  "entry": "dist/index.js",
+  "permissions": ["storage.read", "library.read"],
+  "description": "A starter extension manifest"
+}
