@@ -1,0 +1,12 @@
+{
+  "id": "com.akari.extensions.kolnovel",
+  "name": "KolNovel",
+  "type": "novel",
+  "icon": "https://free.kolnovel.com/favicon.ico",
+  "version": "0.1.0",
+  "hostApiVersion": "1.0.0",
+  "entry": "dist/index.js",
+  "permissions": ["network.fetch"],
+  "description": "ملوك الروايات (free.kolnovel.com) — Arabic novel source for fantasy novels (Chinese, Korean, Japanese)",
+  "author": "Akari"
+}
