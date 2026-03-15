@@ -158,7 +158,7 @@ export function parseHomePage(html: string): HomeResult {
   const latestUpdates: NovelCover[] = [];
   doc.querySelectorAll(".utao .uta").forEach((uta) => {
     const linkEl = uta.querySelector(".imgu a") as HTMLAnchorElement | null;
-    const titleEl = uta.querySelector(".luf h3");
+    const titleEl = uta.querySelector(".luf h3, .luf h4");
     const imgEl = uta.querySelector("img") as HTMLImageElement | null;
     if (!linkEl) return;
     const href = linkEl.getAttribute("href") ?? "";
@@ -227,7 +227,7 @@ export function parseNovelDetail(html: string, novelUrl: string): NovelDetail {
 
   // Status
   let status = "Unknown";
-  const statusNodes = doc.querySelectorAll(".tsinfo .imptdt, .spe span");
+  const statusNodes = doc.querySelectorAll(".tsinfo .imptdt, .spe span, .sertostat span");
   statusNodes.forEach((n) => {
     const text = n.textContent?.trim().toLowerCase() ?? "";
     if (text.includes("ongoing")) status = "Ongoing";
@@ -237,12 +237,13 @@ export function parseNovelDetail(html: string, novelUrl: string): NovelDetail {
   // Rating
   const ratingText =
     (doc.querySelector(".rating .num") as HTMLElement | null)?.textContent?.trim() ??
-    (doc.querySelector(".rt .num") as HTMLElement | null)?.textContent?.trim() ?? "";
+    (doc.querySelector(".rt .num") as HTMLElement | null)?.textContent?.trim() ??
+    (doc.querySelector(".numscore") as HTMLElement | null)?.textContent?.trim() ?? "";
   const rating = Number.parseFloat(ratingText);
 
   // Genres
   const genres: string[] = [];
-  doc.querySelectorAll(".mgen a").forEach((a) => {
+  doc.querySelectorAll(".mgen a, .sertogenre a").forEach((a) => {
     const g = a.textContent?.trim();
     if (g) genres.push(g);
   });
